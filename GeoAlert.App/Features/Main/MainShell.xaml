@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	   xmlns:addPoint="clr-namespace:GeoAlert.App.Features.AddPoint"
+	   xmlns:dashboard="clr-namespace:GeoAlert.App.Features.Dashboard"
+	   xmlns:points="clr-namespace:GeoAlert.App.Features.Points"
+	   xmlns:settings="clr-namespace:GeoAlert.App.Features.Settings"
+	   xmlns:main="clr-namespace:GeoAlert.App.Features.Main"
+	   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	   x:Class="GeoAlert.App.Features.Main.MainShell"
+	   FlyoutVerticalScrollMode="Enabled"
+	   Shell.FlyoutBehavior="Flyout">
+
+	<FlyoutItem Title="{Static main:Text.TitleMain}" Route="Dashboard">
+		<ShellContent ContentTemplate="{DataTemplate dashboard:DashboardPage}" />
+	</FlyoutItem>
+
+	<Tab Title="{Static main:Text.TitleGeofences}" Route="Points"
+		 FlyoutDisplayOptions="AsMultipleItems">
+		<ShellContent Title="{Static main:Text.TitleAddGeofence}" Route="AddPoints"
+					  ContentTemplate="{DataTemplate addPoint:AddPointPage}" />
+		<ShellContent Title="{Static main:Text.TitleListGeofences}" Route="ListPoints"
+					  ContentTemplate="{DataTemplate points:PointsPage}" />
+	</Tab>
+
+	<FlyoutItem Title="{Static main:Text.TitleSettings}" Route="Settings">
+		<ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}" />
+	</FlyoutItem>
+
+</Shell>

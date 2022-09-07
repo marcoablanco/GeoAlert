@@ -1,0 +1,37 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GeoAlert.App"
+             x:Class="GeoAlert.App.App">
+	<Application.Resources>
+		<ResourceDictionary>
+			<Color x:Key="LightGrayColor">#C3C3C3</Color>
+			<Color x:Key="GrayColor">#616161</Color>
+			<Color x:Key="BlackColor">#161616</Color>
+
+			<SolidColorBrush x:Key="LightGrayBrush" Color="{StaticResource LightGrayColor}" />
+			<SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
+
+			<!--Labels-->
+			<Style x:Key="TitleLabelStyle" TargetType="Label">
+				<Setter Property="FontAttributes" Value="Bold" />
+				<Setter Property="FontSize" Value="Header" />
+			</Style>
+			<!--Labels-->
+
+			<!--Borders-->
+			<Style TargetType="Border">
+				<Setter Property="StrokeShape" Value="RoundRectangle 10" />
+				<Setter Property="Stroke" Value="{StaticResource LightGrayBrush}" />
+				<Setter Property="Margin" Value="5" />
+				<Setter Property="Padding" Value="5" />
+				<Setter Property="Shadow">
+					<Shadow Brush="{StaticResource LightGrayBrush}" Opacity="0.5"
+							Offset="5,5" Radius="10" />
+				</Setter>
+			</Style>
+			<!--Borders-->
+		</ResourceDictionary>
+	</Application.Resources>
+</Application>
+

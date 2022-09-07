@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<base:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+					  xmlns:base="clr-namespace:GeoAlert.App.Bases"
+					  xmlns:dashboard="clr-namespace:GeoAlert.App.Features.Dashboard"
+					  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+					  x:TypeArguments="dashboard:DashboardViewModel"
+					  x:Class="GeoAlert.App.Features.Dashboard.DashboardPage"
+					  Title="{Static dashboard:Text.Title}">
+	
+	<Grid x:Name="GridMain"
+		  RowDefinitions="*,Auto">
+
+		<Border x:Name="BorderMaps"
+				Grid.Row="0"
+				Margin="5">
+			
+		</Border>
+
+		<ListView x:Name="ListResume"
+				  Grid.Row="1"
+				  HasUnevenRows="True"
+				  VerticalOptions="FillAndExpand">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<dashboard:PointCell />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</Grid>
+</base:BaseContentPage>
