@@ -1,5 +1,6 @@
 ﻿namespace GeoAlert.App.Platforms.Android.Services;
 
+using GeoAlert.App.Models;
 using GeoAlert.App.Platforms.Android.Broadcasts;
 using GeoAlert.App.Services.Geofencing;
 using global::Android.App;
@@ -19,15 +20,30 @@ internal class GeofencingService : IGeofencingService
 		geofencingClient = LocationServices.GetGeofencingClient(MainActivity.MainContext);
 	}
 
-	public async Task AddGeofencingAsync(string idGeofence, Location location, float ratio)
+	public async Task AddGeofencingAsync(PointModel pointModel)
 	{
 		GeofenceBuilder builder = new GeofenceBuilder();
-		IGeofence geofence = builder.SetRequestId(idGeofence)
-									.SetCircularRegion(location.Latitude, location.Longitude, ratio)
-									.SetLoiteringDelay(5 * 1000)
-									.SetTransitionTypes(Geofence.GeofenceTransitionEnter | Geofence.GeofenceTransitionExit | Geofence.GeofenceTransitionDwell)
-									.SetExpirationDuration((long)365 * 24 * 60 * 60 * 1000)
-									.Build();
+		builder = builder.SetRequestId(pointModel.Name)
+						 .SetCircularRegion(pointModel.Latitude, pointModel.Longitude, pointModel.Ratio)
+						 .SetLoiteringDelay(5 * 1000)
+						 
+						 .SetExpirationDuration((long)365 * 24 * 60 * 60 * 1000);
+		if (pointModel.WatchEnter && pointModel.WatchExit && pointModel.WatchDwell)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionEnter | Geofence.GeofenceTransitionExit | Geofence.GeofenceTransitionDwell);
+		else if (pointModel.WatchEnter && pointModel.WatchExit)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionEnter | Geofence.GeofenceTransitionExit);
+		else if (pointModel.WatchEnter && pointModel.WatchDwell)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionEnter | Geofence.GeofenceTransitionDwell);
+		else if (pointModel.WatchExit && pointModel.WatchDwell)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionExit | Geofence.GeofenceTransitionDwell);
+		else if (pointModel.WatchEnter)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionEnter);
+		else if (pointModel.WatchExit)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionExit);
+		else if (pointModel.WatchDwell)
+			builder.SetTransitionTypes(Geofence.GeofenceTransitionDwell);
+
+		IGeofence geofence = builder.Build();
 
 		GeofencingRequest.Builder requestBuilder = new GeofencingRequest.Builder();
 		GeofencingRequest request = requestBuilder.AddGeofences(new List<IGeofence> { geofence })
@@ -35,7 +51,6 @@ internal class GeofencingService : IGeofencingService
 
 		await geofencingClient.AddGeofences(request, GetGeofencePendingIntent());
 	}
-
 
 	private PendingIntent GetGeofencePendingIntent()
 	{

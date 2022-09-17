@@ -6,14 +6,14 @@
 					  x:TypeArguments="dashboard:DashboardViewModel"
 					  x:Class="GeoAlert.App.Features.Dashboard.DashboardPage"
 					  Title="{Static dashboard:Text.Title}">
-	
+
 	<Grid x:Name="GridMain"
 		  RowDefinitions="*,Auto">
 
 		<Border x:Name="BorderMaps"
 				Grid.Row="0"
 				Margin="5">
-			
+
 		</Border>
 
 		<ListView x:Name="ListResume"
@@ -26,5 +26,16 @@
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>
+
+		<Button x:Name="BtnAdd"
+				Grid.RowSpan="2"
+				Text="+" TextColor="{StaticResource WhiteColor}" FontSize="20"
+				BackgroundColor="{StaticResource LightBlueColor}" CornerRadius="25"
+				Padding="0" TranslationX="-20" TranslationY="-50" HeightRequest="50" WidthRequest="50"
+				HorizontalOptions="End" VerticalOptions="End">
+			<Button.Shadow>
+				<Shadow Brush="{StaticResource BlueBrush}" Offset="20,20" Opacity="1" />
+			</Button.Shadow>
+		</Button>
 	</Grid>
 </base:BaseContentPage>

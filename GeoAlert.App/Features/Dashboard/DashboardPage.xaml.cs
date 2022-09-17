@@ -17,7 +17,7 @@ public partial class DashboardPage
 		base.OnActivated(disposables);
 
 		disposables.Add(this.OneWayBind(ViewModel, vm => vm.Points, v => v.ListResume.ItemsSource));
-		disposables.Add(this.OneWayBind(ViewModel, vm => vm.IsLoading, v => v.ListResume.IsRefreshing));
+		disposables.Add(this.OneWayBind(ViewModel, vm => vm.Loading, v => v.ListResume.IsRefreshing));
 
 		return disposables;
 	}

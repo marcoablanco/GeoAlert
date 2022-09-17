@@ -1,14 +1,36 @@
 ﻿namespace GeoAlert.App.Features.Main;
 
+using GeoAlert.App.Features.AddPoint;
+using GeoAlert.App.Services.AppLog;
+using ReactiveUI;
+
 public partial class MainShell : Shell
 {
-	public MainShell()
+	private readonly IServiceProvider serviceProvider;
+	private readonly ILogService logService;
+
+	public MainShell(IServiceProvider serviceProvider)
 	{
+		IServiceScope serviceScope = serviceProvider.CreateScope();
+		this.serviceProvider = serviceScope.ServiceProvider;
+		logService = serviceScope.ServiceProvider.GetRequiredService<ILogService>();
+
 		InitializeComponent();
 	}
 
-	public async Task NavigateToAddPoint()
+	protected override void OnAppearing()
 	{
-		await GoToAsync("Points/AddPoints", true);
+		base.OnAppearing();
+		BtnAdd.Command = ReactiveCommand.CreateFromTask(NavigateToAddPointAsync);
+	}
+
+	public async Task NavigateToAddPointAsync()
+	{
+		AddPointPage? addPointPage = serviceProvider.GetService<AddPointPage>();
+		if (addPointPage is not null)
+			await Navigation.PushModalAsync(addPointPage, true);
+		else
+			logService.LogLine("AddPointPage not founded in ServiceProvider");
+
 	}
 }

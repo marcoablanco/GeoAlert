@@ -4,10 +4,10 @@ using GeoAlert.App.Features.Main;
 
 public partial class App : Application
 {
-	public App()
+	public App(MainShell mainShell)
 	{
 		InitializeComponent();
 
-		MainPage = new MainShell();
+		MainPage = mainShell;
 	}
 }

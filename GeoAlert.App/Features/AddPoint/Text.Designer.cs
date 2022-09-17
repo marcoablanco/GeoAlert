@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GeoAlert.App.Resources.Translations {
+namespace GeoAlert.App.Features.AddPoint {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace GeoAlert.App.Resources.Translations {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GeoAlert.App.Resources.Translations.Text", typeof(Text).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GeoAlert.App.Features.AddPoint.Text", typeof(Text).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,47 @@ namespace GeoAlert.App.Resources.Translations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Te mantienes dentro de una de las ubicaciones configuradas..
+        ///   Looks up a localized string similar to Añadiendo petipoint.
         /// </summary>
-        internal static string BroadcastDwellMessage {
+        internal static string Adding {
             get {
-                return ResourceManager.GetString("BroadcastDwellMessage", resourceCulture);
+                return ResourceManager.GetString("Adding", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¡Te quedas!.
+        ///   Looks up a localized string similar to ¡Petipoint añadido con éxito!.
         /// </summary>
-        internal static string BroadcastDwellTitle {
+        internal static string AlertAddOk {
             get {
-                return ResourceManager.GetString("BroadcastDwellTitle", resourceCulture);
+                return ResourceManager.GetString("AlertAddOk", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Has entrado en una de las ubicaciones configuradas..
+        ///   Looks up a localized string similar to ¿Está seguro de que desea añadir un nuevo petipoint?.
         /// </summary>
-        internal static string BroadcastInMessage {
+        internal static string AlertEnsureWantAdd {
             get {
-                return ResourceManager.GetString("BroadcastInMessage", resourceCulture);
+                return ResourceManager.GetString("AlertEnsureWantAdd", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ¡Entraste!.
+        ///   Looks up a localized string similar to Revisa lo que has añadido, algunos campos no son válidos..
         /// </summary>
-        internal static string BroadcastInTitle {
+        internal static string AlertFields {
             get {
-                return ResourceManager.GetString("BroadcastInTitle", resourceCulture);
+                return ResourceManager.GetString("AlertFields", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Has salido de una de las ubicaciones configuradas..
+        ///   Looks up a localized string similar to Añadir petipoints.
         /// </summary>
-        internal static string BroadcastOutMessage {
+        internal static string Title {
             get {
-                return ResourceManager.GetString("BroadcastOutMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ¡Saliste!.
-        /// </summary>
-        internal static string BroadcastOutTitle {
-            get {
-                return ResourceManager.GetString("BroadcastOutTitle", resourceCulture);
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
     }

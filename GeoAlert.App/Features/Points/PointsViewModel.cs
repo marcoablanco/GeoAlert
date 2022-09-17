@@ -47,14 +47,14 @@ public class PointsViewModel : BasePageViewModel
 		List<PointModel> list = await preferencesService.GetAllPointsAsync();
 
 		Dispatch(() => Points = new ObservableCollection<PointModel>(list), true);
-		Dispatch(() => IsLoading = false);
+		Dispatch(() => Loading = string.Empty);
 	}
 
 	private async Task AddPointCommandExecuteAsync()
 	{
 		if (Application.Current?.MainPage is MainShell mainShell)
 		{
-			await mainShell.NavigateToAddPoint();
+			await mainShell.NavigateToAddPointAsync();
 		}
 	}
 

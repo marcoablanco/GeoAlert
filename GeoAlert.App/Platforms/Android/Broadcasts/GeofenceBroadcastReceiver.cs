@@ -28,13 +28,13 @@ internal class GeofenceBroadcastReceiver : BroadcastReceiver
 		switch (geofenceTransition)
 		{
 			case Geofence.GeofenceTransitionEnter:
-				notificationsService.SendNotification(Text.BroadcastInTitle, Text.BroadcastInMessage, 10000);
+				notificationsService.SendNotification(MainText.BroadcastInTitle, MainText.BroadcastInMessage, 10000);
 				break;
 			case Geofence.GeofenceTransitionExit:
-				notificationsService.SendNotification(Text.BroadcastOutTitle, Text.BroadcastOutMessage, 10000);
+				notificationsService.SendNotification(MainText.BroadcastOutTitle, MainText.BroadcastOutMessage, 10000);
 				break;
 			case Geofence.GeofenceTransitionDwell:
-				notificationsService.SendNotification(Text.BroadcastDwellTitle, Text.BroadcastDwellMessage, 10000);
+				notificationsService.SendNotification(MainText.BroadcastDwellTitle, MainText.BroadcastDwellMessage, 10000);
 				break;
 			default:
 				// Log the error.

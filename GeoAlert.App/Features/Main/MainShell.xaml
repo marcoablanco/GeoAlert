@@ -9,18 +9,17 @@
 	   x:Class="GeoAlert.App.Features.Main.MainShell"
 	   FlyoutVerticalScrollMode="Enabled"
 	   Shell.FlyoutBehavior="Flyout">
+	<Shell.ToolbarItems>
+		<ToolbarItem x:Name="BtnAdd" Text="{Static main:Text.AddGeofence}" />
+	</Shell.ToolbarItems>
 
 	<FlyoutItem Title="{Static main:Text.TitleMain}" Route="Dashboard">
 		<ShellContent ContentTemplate="{DataTemplate dashboard:DashboardPage}" />
 	</FlyoutItem>
 
-	<Tab Title="{Static main:Text.TitleGeofences}" Route="Points"
-		 FlyoutDisplayOptions="AsMultipleItems">
-		<ShellContent Title="{Static main:Text.TitleAddGeofence}" Route="AddPoints"
-					  ContentTemplate="{DataTemplate addPoint:AddPointPage}" />
-		<ShellContent Title="{Static main:Text.TitleListGeofences}" Route="ListPoints"
-					  ContentTemplate="{DataTemplate points:PointsPage}" />
-	</Tab>
+	<FlyoutItem Title="{Static main:Text.TitleGeofences}" Route="Points">
+		<ShellContent ContentTemplate="{DataTemplate points:PointsPage}" />
+	</FlyoutItem>
 
 	<FlyoutItem Title="{Static main:Text.TitleSettings}" Route="Settings">
 		<ShellContent ContentTemplate="{DataTemplate settings:SettingsPage}" />

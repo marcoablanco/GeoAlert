@@ -4,11 +4,20 @@
 					  xmlns:addPoint="clr-namespace:GeoAlert.App.Features.AddPoint"
 					  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 					  x:Class="GeoAlert.App.Features.AddPoint.AddPointPage"
-					  x:TypeArguments="addPoint:AddPointViewModel">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+					  x:TypeArguments="addPoint:AddPointViewModel"
+					  Title="{Static addPoint:Text.Title}">
+
+	<Grid x:Name="GridMain"
+		  RowDefinitions="*,2*">
+
+		<Border x:Name="BorderMaps"
+				Grid.Row="0"
+				Margin="5">
+
+		</Border>
+
+		<Grid x:Name="GridFields">
+			
+		</Grid>
+	</Grid>
 </base:BaseContentPage>

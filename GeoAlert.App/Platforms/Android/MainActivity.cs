@@ -9,7 +9,7 @@ public class MainActivity : MauiAppCompatActivity
 {
 	public static Activity? MainContext { get; internal set; }
 
-	protected override void OnCreate(Bundle savedInstanceState)
+	protected override void OnCreate(Bundle? savedInstanceState)
 	{
 		base.OnCreate(savedInstanceState);
 		MainContext = this;

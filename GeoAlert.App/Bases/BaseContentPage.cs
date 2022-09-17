@@ -16,6 +16,7 @@ public class BaseContentPage<TViewModel> : ReactiveContentPage<TViewModel> where
 	{
 		ViewModel = viewModel;
 		ViewModel.Dispatcher = Dispatcher;
+
 		this.WhenActivated(d => OnActivated(d));
 		this.logService = logService;
 	}
@@ -57,13 +58,13 @@ public class BaseContentPage<TViewModel> : ReactiveContentPage<TViewModel> where
 
 		ViewModel.OnActivated(disposables);
 
-		disposables.Add(ViewModel.WhenAnyValue(vm => vm.IsLoading)
+		disposables.Add(ViewModel.WhenAnyValue(vm => vm.Loading)
 								 .Skip(1)
-								 .Do(loading => Dispatcher.Dispatch(() => IsBusy = loading), logService.LogError)
-								 .Catch<bool, Exception>(ex =>
+								 .Do(loading => Dispatcher.Dispatch(() => IsBusy = !string.IsNullOrEmpty(loading)), logService.LogError)
+								 .Catch<string, Exception>(ex =>
 								 {
 									 logService.LogError(ex);
-									 return Observable.Return(ViewModel.IsLoading);
+									 return Observable.Return(ViewModel.Loading);
 								 })
 								 .Subscribe());
 		return disposables;

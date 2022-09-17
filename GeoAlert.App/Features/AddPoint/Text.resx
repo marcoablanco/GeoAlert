@@ -117,22 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BroadcastDwellMessage" xml:space="preserve">
-    <value>Te mantienes dentro de una de las ubicaciones configuradas.</value>
+  <data name="Adding" xml:space="preserve">
+    <value>Añadiendo petipoint</value>
   </data>
-  <data name="BroadcastDwellTitle" xml:space="preserve">
-    <value>¡Te quedas!</value>
+  <data name="AlertAddOk" xml:space="preserve">
+    <value>¡Petipoint añadido con éxito!</value>
   </data>
-  <data name="BroadcastInMessage" xml:space="preserve">
-    <value>Has entrado en una de las ubicaciones configuradas.</value>
+  <data name="AlertEnsureWantAdd" xml:space="preserve">
+    <value>¿Está seguro de que desea añadir un nuevo petipoint?</value>
   </data>
-  <data name="BroadcastInTitle" xml:space="preserve">
-    <value>¡Entraste!</value>
+  <data name="AlertFields" xml:space="preserve">
+    <value>Revisa lo que has añadido, algunos campos no son válidos.</value>
   </data>
-  <data name="BroadcastOutMessage" xml:space="preserve">
-    <value>Has salido de una de las ubicaciones configuradas.</value>
-  </data>
-  <data name="BroadcastOutTitle" xml:space="preserve">
-    <value>¡Saliste!</value>
+  <data name="Title" xml:space="preserve">
+    <value>Añadir petipoints</value>
   </data>
 </root>

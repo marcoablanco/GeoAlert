@@ -7,24 +7,30 @@ using System.Reactive.Linq;
 public class BaseViewModel : ReactiveObject
 {
 	private readonly ILogService logService;
-	private bool isLoading;
+	private string loading;
 
 	public BaseViewModel(ILogService logService)
 	{
 		this.logService = logService;
-		isLoading = true;
-		IsNotLoadingObservable = this.WhenAnyValue(vm => vm.IsLoading).Select(x => !x);
+		loading = string.Empty;
+		NameViewModel = GetType().Name;
+		IsNotLoadingObservable = this.WhenAnyValue(vm => vm.Loading).Select(x => string.IsNullOrEmpty(x));
+
+		logService.LogLine($"{NameViewModel} created.");
 	}
 
 	public IDispatcher? Dispatcher { get; set; }
-
 	public IObservable<bool> IsNotLoadingObservable { get; }
 
-	public bool IsLoading
+	public string Loading
 	{
-		get => isLoading;
-		set => this.RaiseAndSetIfChanged(ref isLoading, value);
+		get => loading;
+		set => this.RaiseAndSetIfChanged(ref loading, value);
 	}
+
+	protected string NameViewModel { get; }
+
+
 
 	protected virtual void Dispatch(Action action, bool secure = false)
 	{

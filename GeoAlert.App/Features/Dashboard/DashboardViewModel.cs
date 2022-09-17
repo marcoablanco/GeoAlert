@@ -37,6 +37,6 @@ public class DashboardViewModel : BasePageViewModel
 		List<PointModel> list = await preferencesService.GetAllPointsAsync();
 
 		Dispatch(() => Points = new ObservableCollection<PointModel>(list), true);
-		Dispatch(() => IsLoading = false);
+		Dispatch(() => Loading = string.Empty);
 	}
 }

@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net6.0-android;net6.0</TargetFrameworks>
 		<!--We need this condition for Unit Tests.-->
 		<OutputType Condition="'$(TargetFramework)' != 'net6.0'">Exe</OutputType>
 		<RootNamespace>GeoAlert.App</RootNamespace>
@@ -11,10 +10,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>GeoAlert.App</ApplicationTitle>
+		<ApplicationTitle>Petipoints</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.geoalert.app</ApplicationId>
+		<ApplicationId>com.marcoablanco.petipoints</ApplicationId>
 		<ApplicationIdGuid>261db2ed-ecc1-43d8-86b8-bbd98064e675</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -93,6 +92,11 @@
 	  <Compile Update="Features\AddPoint\AddPointPage.xaml.cs">
 	    <DependentUpon>AddPointPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\AddPoint\Text.Designer.cs">
+	    <DependentUpon>Text.resx</DependentUpon>
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	  </Compile>
 	  <Compile Update="Features\Dashboard\PointCell.xaml.cs">
 	    <DependentUpon>PointCell.xaml</DependentUpon>
 	  </Compile>
@@ -125,14 +129,18 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Text.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Translations\Text.Designer.cs">
+	  <Compile Update="Resources\Translations\MainText.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Text.resx</DependentUpon>
+	    <DependentUpon>MainText.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Update="Features\AddPoint\Text.resx">
+	    <LastGenOutput>Text.Designer.cs</LastGenOutput>
+	    <Generator>ResXFileCodeGenerator</Generator>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Features\Dashboard\Text.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Text.Designer.cs</LastGenOutput>
@@ -149,9 +157,9 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Text.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Translations\Text.resx">
+	  <EmbeddedResource Update="Resources\Translations\MainText.resx">
 	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Text.Designer.cs</LastGenOutput>
+	    <LastGenOutput>MainText.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 

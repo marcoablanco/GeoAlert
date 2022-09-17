@@ -117,22 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddGeofence" xml:space="preserve">
-    <value>Añadir</value>
+  <data name="AlertAccept" xml:space="preserve">
+    <value>Aceptar</value>
   </data>
-  <data name="TitleAddGeofence" xml:space="preserve">
-    <value>Añadir</value>
+  <data name="AlertCancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="TitleGeofences" xml:space="preserve">
-    <value>Petipoints</value>
+  <data name="AlertMessageError" xml:space="preserve">
+    <value>Ha ocurrido un error. Por favor, inténtelo de nuevo.</value>
   </data>
-  <data name="TitleListGeofences" xml:space="preserve">
-    <value>Lista</value>
+  <data name="AlertOk" xml:space="preserve">
+    <value>De acuerdo</value>
   </data>
-  <data name="TitleMain" xml:space="preserve">
-    <value>Inicio</value>
+  <data name="AlertTitleError" xml:space="preserve">
+    <value>¡Error!</value>
   </data>
-  <data name="TitleSettings" xml:space="preserve">
-    <value>Ajustes</value>
+  <data name="AlertTitleWarning" xml:space="preserve">
+    <value>¡Alerta!</value>
+  </data>
+  <data name="BroadcastDwellMessage" xml:space="preserve">
+    <value>Te mantienes dentro de una de las ubicaciones configuradas.</value>
+  </data>
+  <data name="BroadcastDwellTitle" xml:space="preserve">
+    <value>¡Te quedas!</value>
+  </data>
+  <data name="BroadcastInMessage" xml:space="preserve">
+    <value>Has entrado en una de las ubicaciones configuradas.</value>
+  </data>
+  <data name="BroadcastInTitle" xml:space="preserve">
+    <value>¡Entraste!</value>
+  </data>
+  <data name="BroadcastOutMessage" xml:space="preserve">
+    <value>Has salido de una de las ubicaciones configuradas.</value>
+  </data>
+  <data name="BroadcastOutTitle" xml:space="preserve">
+    <value>¡Saliste!</value>
   </data>
 </root>

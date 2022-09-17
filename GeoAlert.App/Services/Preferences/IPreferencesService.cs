@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public interface IPreferencesService
 {
-	Task InsertPersonalPointAsync(PointModel point);
-	Task InsertAllPointAsync(IEnumerable<PointModel> points);
+	Task InsertPersonalPointAsync(PointModel pointModel);
+	Task InsertAllPointAsync(IEnumerable<PointModel> pointModels);
 
 	Task<List<PointModel>> GetAllPointsAsync();
 }

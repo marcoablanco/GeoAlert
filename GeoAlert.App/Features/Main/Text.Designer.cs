@@ -63,6 +63,15 @@ namespace GeoAlert.App.Features.Main {
         /// <summary>
         ///   Looks up a localized string similar to Añadir.
         /// </summary>
+        internal static string AddGeofence {
+            get {
+                return ResourceManager.GetString("AddGeofence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Añadir.
+        /// </summary>
         internal static string TitleAddGeofence {
             get {
                 return ResourceManager.GetString("TitleAddGeofence", resourceCulture);
