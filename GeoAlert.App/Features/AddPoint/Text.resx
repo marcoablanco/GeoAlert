@@ -132,4 +132,14 @@
   <data name="Title" xml:space="preserve">
     <value>Añadir petipoints</value>
   </data>
+  <data name="ValidationChooseOne" xml:space="preserve">
+    <value>Debe elegir al menos uno.</value>
+  </data>
+  <data name="ValidationMoreThan" xml:space="preserve">
+    <value>Debe ser mayor que {0}.</value>
+    <comment>string.format</comment>
+  </data>
+  <data name="ValidationNull" xml:space="preserve">
+    <value>Este campo es obligatorio.</value>
+  </data>
 </root>

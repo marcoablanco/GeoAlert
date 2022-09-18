@@ -104,5 +104,32 @@ namespace GeoAlert.App.Features.AddPoint {
                 return ResourceManager.GetString("Title", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe elegir al menos uno..
+        /// </summary>
+        internal static string ValidationChooseOne {
+            get {
+                return ResourceManager.GetString("ValidationChooseOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe ser mayor que {0}..
+        /// </summary>
+        internal static string ValidationMoreThan {
+            get {
+                return ResourceManager.GetString("ValidationMoreThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Este campo es obligatorio..
+        /// </summary>
+        internal static string ValidationNull {
+            get {
+                return ResourceManager.GetString("ValidationNull", resourceCulture);
+            }
+        }
     }
 }

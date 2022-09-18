@@ -11,7 +11,8 @@ public static class MauiProgram
 							 .AddFonts()
 							 .AddHandlers();
 
-		builder.Services.AddServices()
+		builder.Services.AddPlatformServices()
+						.AddServices()
 						.AddViewModels()
 						.AddViews();
 

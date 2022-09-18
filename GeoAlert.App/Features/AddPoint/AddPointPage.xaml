@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <base:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-					  xmlns:base="clr-namespace:GeoAlert.App.Bases"
 					  xmlns:addPoint="clr-namespace:GeoAlert.App.Features.AddPoint"
+					  xmlns:base="clr-namespace:GeoAlert.App.Bases"
+					  xmlns:controls="clr-namespace:GeoAlert.App.Controls"
 					  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 					  x:Class="GeoAlert.App.Features.AddPoint.AddPointPage"
 					  x:TypeArguments="addPoint:AddPointViewModel"
 					  Title="{Static addPoint:Text.Title}">
 
 	<Grid x:Name="GridMain"
-		  RowDefinitions="*,2*">
+		  RowDefinitions="*,2*"
+		  VerticalOptions="FillAndExpand">
 
 		<Border x:Name="BorderMaps"
 				Grid.Row="0"
@@ -16,8 +18,13 @@
 
 		</Border>
 
-		<Grid x:Name="GridFields">
-			
+		<Grid x:Name="GridFields" 
+			  Grid.Row="1">
+			<controls:ValidatableEntryControl x:Name="TxtName" 
+											  VerticalOptions="Start"/>
+			<controls:ValidatableEntryControl x:Name="TxtRadious" 
+											  Grid.Row="1"
+											  VerticalOptions="Start"/>
 		</Grid>
 	</Grid>
 </base:BaseContentPage>

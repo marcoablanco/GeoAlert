@@ -80,9 +80,13 @@
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.3" />
 	  <PackageReference Include="ReactiveUI.Maui" Version="18.3.1" />
+	  <PackageReference Include="ReactiveUI.Validation" Version="3.0.1" />
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-android'">
+		<PackageReference Include="ReactiveUI.Validation.AndroidX">
+		  <Version>3.0.1</Version>
+		</PackageReference>
 		<PackageReference Include="Xamarin.GooglePlayServices.Location">
 			<Version>120.0.0</Version>
 		</PackageReference>

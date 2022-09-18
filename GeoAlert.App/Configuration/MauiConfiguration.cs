@@ -1,5 +1,7 @@
 ﻿namespace GeoAlert.App.Configuration;
 
+using GeoAlert.App.Controls;
+using GeoAlert.App.Platforms.Android.Handlers;
 using Microsoft.Maui.LifecycleEvents;
 using System.Diagnostics;
 
@@ -16,9 +18,11 @@ internal static class MauiConfiguration
 
 	internal static MauiAppBuilder AddHandlers(this MauiAppBuilder builder)
 	{
-		return builder;
+		return builder
 #if ANDROID
+			.ConfigureMauiHandlers(handler => handler.AddHandler<ValidatableEntryControl, ValidatableEntryControlHandler>());
 #else
+;
 #endif
 	}
 
@@ -30,8 +34,8 @@ internal static class MauiConfiguration
 			events.AddAndroid(android => android.OnActivityResult((activity, requestCode, resultCode, data) => LogEvent("OnActivityResult", requestCode.ToString()))
 												.OnStart((activity) => LogEvent("OnStart"))
 												.OnCreate((activity, bundle) => LogEvent("OnCreate"))
-												.OnStop((activity) => LogEvent("OnStop"))); 
-			
+												.OnStop((activity) => LogEvent("OnStop")));
+
 #endif
 		});
 	}

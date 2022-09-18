@@ -15,7 +15,7 @@ internal class PreferencesService : IPreferencesService
 
 	public async Task<List<PointModel>> GetAllPointsAsync()
 	{
-		List<PointModel> places = preferences.Get(Keys.Points, new List<PointModel>(), Keys.PersonalPointsCategory);
+		List<PointModel> places = preferences.Get(Keys.PointsPersonal, new List<PointModel>(), Keys.PointsCategory);
 		return await Task.FromResult(places ?? new List<PointModel>());
 	}
 
@@ -23,13 +23,13 @@ internal class PreferencesService : IPreferencesService
 	{
 		List<PointModel> places = await GetAllPointsAsync();
 		places.Add(placeModel);
-		preferences.Set(Keys.Points, places, Keys.PersonalPointsCategory);
+		preferences.Set(Keys.PointsPersonal, places, Keys.PointsCategory);
 	}
 
 	public async Task InsertAllPointAsync(IEnumerable<PointModel> placeModels)
 	{
 		List<PointModel> places = await GetAllPointsAsync();
 		places.AddRange(placeModels);
-		preferences.Set(Keys.Points, places, Keys.PersonalPointsCategory);
+		preferences.Set(Keys.PointsPersonal, places, Keys.PointsCategory);
 	}
 }

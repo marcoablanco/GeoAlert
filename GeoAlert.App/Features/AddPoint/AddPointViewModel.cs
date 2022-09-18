@@ -8,12 +8,16 @@ using GeoAlert.App.Services.AppLog;
 using GeoAlert.App.Services.Geofencing;
 using GeoAlert.App.Services.Preferences;
 using ReactiveUI;
+using ReactiveUI.Validation.Abstractions;
+using ReactiveUI.Validation.Contexts;
+using ReactiveUI.Validation.Extensions;
+using ReactiveUI.Validation.Helpers;
 using System;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Threading.Tasks;
 
-public class AddPointViewModel : BasePageViewModel
+public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 {
 	private readonly IAlertService alertService;
 	private readonly IGeofencingService geofencingService;
@@ -36,9 +40,17 @@ public class AddPointViewModel : BasePageViewModel
 		this.geofencingService = geofencingService;
 		this.preferencesService = preferencesService;
 
+		ValidationContext = new ValidationContext();
+
 		name = string.Empty;
 		description = string.Empty;
 		shortDescription = string.Empty;
+
+		NameValidation = this.ValidationRule(vm => vm.Name, n => !string.IsNullOrWhiteSpace(n), Text.ValidationNull);
+		RatioValidation = this.ValidationRule(vm => vm.Ratio, r => r > 5, string.Format(Text.ValidationMoreThan, 5));
+		WatchEnterValidation = this.ValidationRule(vm => vm.WatchEnter, _ => WatchEnter || WatchExit || WatchDwell, string.Format(Text.ValidationChooseOne, 5));
+		WatchExitValidation = this.ValidationRule(vm => vm.WatchExit, _ => WatchEnter || WatchExit || WatchDwell, string.Format(Text.ValidationChooseOne, 5));
+		WatchDwellValidation = this.ValidationRule(vm => vm.WatchDwell, _ => WatchEnter || WatchExit || WatchDwell, string.Format(Text.ValidationChooseOne, 5));
 
 		AddGeofenceCommand = ReactiveCommand.CreateFromTask(AddGeofenceCommandExecuteAsync, IsNotLoadingObservable);
 	}
@@ -98,6 +110,14 @@ public class AddPointViewModel : BasePageViewModel
 	}
 
 	public ReactiveCommand<Unit, Unit> AddGeofenceCommand { get; }
+	public ValidationContext ValidationContext { get; }
+	public ValidationHelper NameValidation { get; }
+	public ValidationHelper RatioValidation { get; }
+	public ValidationHelper WatchEnterValidation { get; }
+	public ValidationHelper WatchExitValidation { get; }
+	public ValidationHelper WatchDwellValidation { get; }
+
+
 
 	public override CompositeDisposable OnActivated(CompositeDisposable disposables)
 	{
@@ -146,8 +166,9 @@ public class AddPointViewModel : BasePageViewModel
 	{
 		try
 		{
-			if (string.IsNullOrEmpty(Name))
+			if (!ValidationContext.Validations.All(v => v.IsValid))
 				return null;
+
 
 			return new PointModel
 			{
