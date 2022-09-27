@@ -6,25 +6,77 @@
 					  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 					  x:Class="GeoAlert.App.Features.AddPoint.AddPointPage"
 					  x:TypeArguments="addPoint:AddPointViewModel"
-					  Title="{Static addPoint:Text.Title}">
+					  Title="{Static addPoint:Text.Title}"
+					  Background="{StaticResource MainBackgroundBrush}">
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
+				<Setter Property="Margin" Value="0,5,0,0" />
+				<Setter Property="VerticalTextAlignment" Value="Center" />
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
 
 	<Grid x:Name="GridMain"
 		  RowDefinitions="*,2*"
+		  Padding="5"
 		  VerticalOptions="FillAndExpand">
 
 		<Border x:Name="BorderMaps"
-				Grid.Row="0"
-				Margin="5">
-
+				Grid.Row="0">
+			
 		</Border>
 
-		<Grid x:Name="GridFields" 
-			  Grid.Row="1">
-			<controls:ValidatableEntryControl x:Name="TxtName" 
-											  VerticalOptions="Start"/>
-			<controls:ValidatableEntryControl x:Name="TxtRadious" 
-											  Grid.Row="1"
-											  VerticalOptions="Start"/>
-		</Grid>
+		<Border Grid.Row="1"
+				Padding="20">
+			
+			<VerticalStackLayout>
+				<Label Text="{Static addPoint:Text.Name}" FontAttributes="Bold" />
+				<controls:ValidatableEntryControl x:Name="TxtName" />
+
+				<Label Text="{Static addPoint:Text.ShortDescription}" FontAttributes="Bold" />
+				<controls:ValidatableEntryControl x:Name="TxtShortDescription" />
+
+				<Label Text="{Static addPoint:Text.Description}" FontAttributes="Bold" />
+				<Editor x:Name="TxtDescription" />
+
+				<Label Text="{Static addPoint:Text.Radious}" FontAttributes="Bold" />
+				<controls:ValidatableEntryControl x:Name="TxtRadious" />
+
+				<Label Text="{Static addPoint:Text.Alerts}" FontAttributes="Bold" />
+				<Grid x:Name="StackChecks"
+					  ColumnDefinitions="50,*,50,*,50,*">
+					<Grid.Resources>
+						<ResourceDictionary>
+							<Style TargetType="CheckBox">
+								<Setter Property="Color" Value="{StaticResource BlueColor}" />
+							</Style>
+						</ResourceDictionary>
+					</Grid.Resources>
+					
+					<CheckBox x:Name="CheckEnter"
+							  Grid.Column="0" />
+					<Label x:Name="LblEnter"
+						   Grid.Column="1" 
+						   Text="{Static addPoint:Text.Enter}"
+						   Margin="0" />
+
+					<CheckBox x:Name="CheckExit"
+							  Grid.Column="2"  />
+					<Label x:Name="LblExit" 
+						   Grid.Column="3" 
+						   Text="{Static addPoint:Text.Exit}" 
+						   Margin="0" />
+
+					<CheckBox x:Name="CheckDwell"
+						  Grid.Column="4"  />
+					<Label x:Name="LblDwel" 
+						   Grid.Column="5" 
+						   Text="{Static addPoint:Text.Dwell}" 
+						   Margin="0" />
+				</Grid>
+
+			</VerticalStackLayout>
+		</Border>
 	</Grid>
 </base:BaseContentPage>

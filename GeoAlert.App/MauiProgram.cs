@@ -17,6 +17,8 @@ public static class MauiProgram
 						.AddViews();
 
 
-		return builder.Build();
+		MauiApp app = builder.Build();
+		app.Services.Set();
+		return app;
 	}
 }

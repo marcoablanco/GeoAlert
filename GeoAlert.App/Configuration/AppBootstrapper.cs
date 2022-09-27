@@ -14,6 +14,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 #if ANDROID
 using GeoAlert.App.Platforms.Android.Services;
+using GeoAlert.App.Services.Loading;
+using AndroidX.Lifecycle;
+
 #endif
 
 internal static class AppBootstrapper
@@ -30,8 +33,9 @@ internal static class AppBootstrapper
 			services.AddSingleton<IPreferencesService, PreferencesService>();
 
 
-		services.AddSingleton<ILogService, LogService>();
-		services.AddSingleton<IAlertService, AlertService>();
+		services.AddSingleton<ILogService, LogService>()
+				.AddSingleton<IAlertService, AlertService>()
+				.AddSingleton(typeof(ILoadingService<>), typeof(LoadingService<>));
 
 		// Maui services
 		services.AddSingleton(Preferences.Default);

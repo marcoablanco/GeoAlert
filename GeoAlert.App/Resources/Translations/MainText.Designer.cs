@@ -167,5 +167,14 @@ namespace GeoAlert.App.Resources.Translations {
                 return ResourceManager.GetString("BroadcastOutTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obteniendo petipoints.
+        /// </summary>
+        internal static string LoadingPoints {
+            get {
+                return ResourceManager.GetString("LoadingPoints", resourceCulture);
+            }
+        }
     }
 }

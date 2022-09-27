@@ -23,7 +23,6 @@ public class DashboardViewModelTests : BaseViewModelTests<DashboardViewModel>
 
 		Assert.IsNotNull(ViewModel.Points, "List never should be null.");
 		Assert.IsTrue(ViewModel.Points.Any(), "Points should be filled here.");
-		Assert.IsFalse(ViewModel.Loading, "IsLoading should be false when Load finish.");
 	}
 
 
@@ -36,6 +35,5 @@ public class DashboardViewModelTests : BaseViewModelTests<DashboardViewModel>
 
 		Assert.IsNotNull(ViewModel.Points, "List never should be null.");
 		Assert.IsFalse(ViewModel.Points.Any(), "Points should be empty here.");
-		Assert.IsFalse(ViewModel.Loading, "IsLoading should be false when Load finish.");
 	}
 }

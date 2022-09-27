@@ -2,7 +2,9 @@
 
 using GeoAlert.App.Bases;
 using GeoAlert.App.Models;
+using GeoAlert.App.Resources.Translations;
 using GeoAlert.App.Services.AppLog;
+using GeoAlert.App.Services.Loading;
 using GeoAlert.App.Services.Preferences;
 using ReactiveUI;
 using System.Collections.ObjectModel;
@@ -10,12 +12,14 @@ using System.Threading.Tasks;
 
 public class DashboardViewModel : BasePageViewModel
 {
+	private readonly ILoadingService<DashboardViewModel> loadingService;
 	private readonly IPreferencesService preferencesService;
 	private ObservableCollection<PointModel> points;
 
-	public DashboardViewModel(IPreferencesService preferencesService, ILogService logService) : base(logService)
+	public DashboardViewModel(ILoadingService<DashboardViewModel> loadingService, IPreferencesService preferencesService, ILogService logService) : base(logService)
 	{
 		points = new ObservableCollection<PointModel>();
+		this.loadingService = loadingService;
 		this.preferencesService = preferencesService;
 	}
 
@@ -34,9 +38,10 @@ public class DashboardViewModel : BasePageViewModel
 
 	private async Task LoadDataAsync()
 	{
+		loadingService.Add(MainText.LoadingPoints);
 		List<PointModel> list = await preferencesService.GetAllPointsAsync();
 
 		Dispatch(() => Points = new ObservableCollection<PointModel>(list), true);
-		Dispatch(() => Loading = string.Empty);
+		loadingService.Remove(MainText.LoadingPoints);
 	}
 }

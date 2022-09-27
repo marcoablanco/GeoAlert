@@ -1,36 +1,64 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:controls="clr-namespace:GeoAlert.App.Controls"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:GeoAlert.App"
              x:Class="GeoAlert.App.App">
 	<Application.Resources>
 		<ResourceDictionary>
 			<Color x:Key="WhiteColor">#ffffff</Color>
-			<Color x:Key="LightBlueColor">#6688ff</Color>
-			<Color x:Key="BlueColor">#3333ff</Color>
-			<Color x:Key="LightGrayColor">#C3C3C3</Color>
+			<Color x:Key="LightBlueColor">#81BEF7</Color>
+			<Color x:Key="BlueColor">#0080FF</Color>
+			<Color x:Key="DarkBlueColor">#082989</Color>
+			<Color x:Key="LightGrayColor">#D8D8D8</Color>
 			<Color x:Key="GrayColor">#616161</Color>
+			<Color x:Key="DarkGrayColor">#424242</Color>
 			<Color x:Key="BlackColor">#161616</Color>
 
 			<SolidColorBrush x:Key="BlueBrush" Color="{StaticResource BlueColor}" />
 			<SolidColorBrush x:Key="LightGrayBrush" Color="{StaticResource LightGrayColor}" />
 			<SolidColorBrush x:Key="BlackBrush" Color="{StaticResource BlackColor}" />
 
+			<Color x:Key="FontColor">#082989</Color>
+			<RadialGradientBrush x:Key="CardBackgroundBrush">
+				<GradientStop Color="{StaticResource WhiteColor}" Offset="0.1" />
+				<GradientStop Color="{StaticResource LightGrayColor}" Offset="1.0" />
+			</RadialGradientBrush>
+			
+			<LinearGradientBrush x:Key="MainBackgroundBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+				<GradientStop Color="{StaticResource DarkBlueColor}" Offset="0.0" />
+				<GradientStop Color="{StaticResource LightBlueColor}" Offset="1.0" />
+			</LinearGradientBrush>
+
 			<!--Labels-->
-			<Style x:Key="TitleLabelStyle" TargetType="Label">
+			<Style x:Key="BaseLabelStyle" TargetType="Label">
+				<Setter Property="TextColor" Value="{StaticResource FontColor}" />				
+			</Style>
+			<Style TargetType="Label" ApplyToDerivedTypes="True" BasedOn="{StaticResource BaseLabelStyle}" />
+
+			<Style x:Key="TitleLabelStyle" TargetType="Label" BasedOn="{StaticResource BaseLabelStyle}">
 				<Setter Property="FontAttributes" Value="Bold" />
 				<Setter Property="FontSize" Value="Header" />
 			</Style>
 			<!--Labels-->
+			
+			<!--Entries-->
+			<Style x:Key="BaseEntryStyle" TargetType="Entry" ApplyToDerivedTypes="True">
+				<Setter Property="VerticalOptions" Value="Start" />
+				<Setter Property="TextColor" Value="{StaticResource FontColor}" />
+			</Style>
+			<Style TargetType="Entry" BasedOn="{StaticResource BaseEntryStyle}" />
+			<Style TargetType="controls:ValidatableEntryControl" BasedOn="{StaticResource BaseEntryStyle}" />
+			<!--Entries-->
 
 			<!--Borders-->
 			<Style TargetType="Border">
-				<Setter Property="StrokeShape" Value="RoundRectangle 10" />
-				<Setter Property="Stroke" Value="{StaticResource LightGrayBrush}" />
+				<Setter Property="StrokeShape" Value="RoundRectangle 5" />
+				<Setter Property="Stroke" Value="{StaticResource DarkGrayColor}" />
+				<Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
 				<Setter Property="Margin" Value="5" />
 				<Setter Property="Padding" Value="5" />
 				<Setter Property="Shadow">
-					<Shadow Brush="{StaticResource LightGrayBrush}" Opacity="0.5"
+					<Shadow Brush="{StaticResource DarkBlueColor}" Opacity="0.5"
 							Offset="5,5" Radius="10" />
 				</Setter>
 			</Style>

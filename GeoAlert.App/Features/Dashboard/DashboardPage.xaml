@@ -5,7 +5,8 @@
 					  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 					  x:TypeArguments="dashboard:DashboardViewModel"
 					  x:Class="GeoAlert.App.Features.Dashboard.DashboardPage"
-					  Title="{Static dashboard:Text.Title}">
+					  Title="{Static dashboard:Text.Title}"
+					  Background="{StaticResource MainBackgroundBrush}">
 
 	<Grid x:Name="GridMain"
 		  RowDefinitions="*,Auto">

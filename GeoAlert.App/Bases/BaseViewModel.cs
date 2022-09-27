@@ -14,19 +14,11 @@ public class BaseViewModel : ReactiveObject
 		this.logService = logService;
 		loading = string.Empty;
 		NameViewModel = GetType().Name;
-		IsNotLoadingObservable = this.WhenAnyValue(vm => vm.Loading).Select(x => string.IsNullOrEmpty(x));
 
 		logService.LogLine($"{NameViewModel} created.");
 	}
 
 	public IDispatcher? Dispatcher { get; set; }
-	public IObservable<bool> IsNotLoadingObservable { get; }
-
-	public string Loading
-	{
-		get => loading;
-		set => this.RaiseAndSetIfChanged(ref loading, value);
-	}
 
 	protected string NameViewModel { get; }
 

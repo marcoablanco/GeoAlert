@@ -1,9 +1,12 @@
 ﻿namespace GeoAlert.App.Configuration;
 
 using GeoAlert.App.Controls;
-using GeoAlert.App.Platforms.Android.Handlers;
 using Microsoft.Maui.LifecycleEvents;
 using System.Diagnostics;
+
+#if ANDROID
+using GeoAlert.App.Platforms.Android.Handlers;
+#endif
 
 internal static class MauiConfiguration
 {

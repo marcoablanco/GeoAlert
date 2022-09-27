@@ -1,8 +1,10 @@
 ﻿namespace GeoAlert.App.Bases;
 
 using GeoAlert.App.Services.AppLog;
+using GeoAlert.App.Services.Loading;
 using ReactiveUI;
 using ReactiveUI.Maui;
+using System;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
@@ -58,15 +60,18 @@ public class BaseContentPage<TViewModel> : ReactiveContentPage<TViewModel> where
 
 		ViewModel.OnActivated(disposables);
 
-		disposables.Add(ViewModel.WhenAnyValue(vm => vm.Loading)
-								 .Skip(1)
-								 .Do(loading => Dispatcher.Dispatch(() => IsBusy = !string.IsNullOrEmpty(loading)), logService.LogError)
-								 .Catch<string, Exception>(ex =>
-								 {
-									 logService.LogError(ex);
-									 return Observable.Return(ViewModel.Loading);
-								 })
-								 .Subscribe());
 		return disposables;
+	}
+
+	protected IDisposable SetBindingIsBusy(ILoadingService loadingService)
+	{
+		return loadingService.IsLoading
+							 .Do(isLoading => Dispatcher.Dispatch(() => IsBusy = isLoading), logService.LogError)
+							 .Catch<bool, Exception>(ex =>
+							 {
+								 logService.LogError(ex);
+								 return loadingService.IsLoading;
+							 })
+							 .Subscribe();
 	}
 }

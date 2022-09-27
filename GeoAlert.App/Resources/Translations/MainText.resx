@@ -153,4 +153,7 @@
   <data name="BroadcastOutTitle" xml:space="preserve">
     <value>¡Saliste!</value>
   </data>
+  <data name="LoadingPoints" xml:space="preserve">
+    <value>Obteniendo petipoints</value>
+  </data>
 </root>

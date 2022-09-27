@@ -6,6 +6,7 @@ using GeoAlert.App.Resources.Translations;
 using GeoAlert.App.Services.Alert;
 using GeoAlert.App.Services.AppLog;
 using GeoAlert.App.Services.Geofencing;
+using GeoAlert.App.Services.Loading;
 using GeoAlert.App.Services.Preferences;
 using ReactiveUI;
 using ReactiveUI.Validation.Abstractions;
@@ -21,6 +22,7 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 {
 	private readonly IAlertService alertService;
 	private readonly IGeofencingService geofencingService;
+	private readonly ILoadingService<AddPointViewModel> loadingService;
 	private readonly IPreferencesService preferencesService;
 	private readonly ILogService logService;
 	private string name;
@@ -33,11 +35,12 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 	private bool watchExit;
 	private bool watchEnter;
 
-	public AddPointViewModel(ILogService logService, IAlertService alertService, IGeofencingService geofencingService, IPreferencesService preferencesService) : base(logService)
+	public AddPointViewModel(ILogService logService, IAlertService alertService, IGeofencingService geofencingService, ILoadingService<AddPointViewModel> loadingService, IPreferencesService preferencesService) : base(logService)
 	{
 		this.logService = logService;
 		this.alertService = alertService;
 		this.geofencingService = geofencingService;
+		this.loadingService = loadingService;
 		this.preferencesService = preferencesService;
 
 		ValidationContext = new ValidationContext();
@@ -47,12 +50,12 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 		shortDescription = string.Empty;
 
 		NameValidation = this.ValidationRule(vm => vm.Name, n => !string.IsNullOrWhiteSpace(n), Text.ValidationNull);
-		RatioValidation = this.ValidationRule(vm => vm.Ratio, r => r > 5, string.Format(Text.ValidationMoreThan, 5));
+		RatioValidation = this.ValidationRule(vm => vm.Radious, r => r > 5, string.Format(Text.ValidationMoreThan, 5));
 		WatchEnterValidation = this.ValidationRule(vm => vm.WatchEnter, _ => WatchEnter || WatchExit || WatchDwell, string.Format(Text.ValidationChooseOne, 5));
 		WatchExitValidation = this.ValidationRule(vm => vm.WatchExit, _ => WatchEnter || WatchExit || WatchDwell, string.Format(Text.ValidationChooseOne, 5));
 		WatchDwellValidation = this.ValidationRule(vm => vm.WatchDwell, _ => WatchEnter || WatchExit || WatchDwell, string.Format(Text.ValidationChooseOne, 5));
 
-		AddGeofenceCommand = ReactiveCommand.CreateFromTask(AddGeofenceCommandExecuteAsync, IsNotLoadingObservable);
+		AddGeofenceCommand = ReactiveCommand.CreateFromTask(AddGeofenceCommandExecuteAsync, loadingService.IsNotLoading);
 	}
 
 	public string Name
@@ -85,7 +88,7 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 		set => this.RaiseAndSetIfChanged(ref longitude, value);
 	}
 
-	public float Ratio
+	public float Radious
 	{
 		get => ratio;
 		set => this.RaiseAndSetIfChanged(ref ratio, value);
@@ -132,7 +135,7 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 	{
 		try
 		{
-			Loading = Text.Adding;
+			loadingService.Add(Text.Adding);
 			PointModel? pointModel = ValidateFields();
 
 			if (pointModel is null)
@@ -158,7 +161,7 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 		}
 		finally
 		{
-			Loading = string.Empty;
+			loadingService.Remove(Text.Adding);
 		}
 	}
 
@@ -177,7 +180,7 @@ public class AddPointViewModel : BasePageViewModel, IValidatableViewModel
 				Description = Description,
 				Latitude = Latitude,
 				Longitude = Longitude,
-				Ratio = Ratio,
+				Ratio = Radious,
 				ShortDescription = ShortDescription,
 				WatchDwell = WatchDwell,
 				WatchEnter = WatchEnter,
