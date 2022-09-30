@@ -61,6 +61,15 @@ namespace GeoAlert.App.Features.AddPoint {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Añadir.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Añadiendo petipoint.
         /// </summary>
         internal static string Adding {
@@ -102,6 +111,15 @@ namespace GeoAlert.App.Features.AddPoint {
         internal static string Alerts {
             get {
                 return ResourceManager.GetString("Alerts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
             }
         }
         

@@ -21,6 +21,8 @@ public partial class DashboardPage
 		base.OnActivated(disposables);
 
 		disposables.Add(this.OneWayBind(ViewModel, vm => vm.Points, v => v.ListResume.ItemsSource));
+		disposables.Add(this.BindCommand(ViewModel, vm => vm.AddPointCommand, v => v.BtnAdd));
+		disposables.Add(this.BindCommand(ViewModel, vm => vm.AddPointCommand, v => v.ToolbarAdd));
 
 		disposables.Add(loadingService.IsLoading.Subscribe(isLoading => ListResume.IsRefreshing = isLoading));
 

@@ -11,11 +11,7 @@
 	   FlyoutBackgroundColor="{DynamicResource LightGrayColor}"
 	   Shell.FlyoutBehavior="Flyout"
 	   Shell.ForegroundColor="{DynamicResource WhiteColor}"
-	   Shell.BackgroundColor="{DynamicResource DarkBlueColor}"
-	   >
-	<Shell.ToolbarItems>
-		<ToolbarItem x:Name="BtnAdd" Text="{Static main:Text.AddGeofence}" />
-	</Shell.ToolbarItems>
+	   Shell.BackgroundColor="{DynamicResource DarkBlueColor}">
 
 	<FlyoutItem Title="{Static main:Text.TitleMain}" Route="Dashboard">
 		<ShellContent ContentTemplate="{DataTemplate dashboard:DashboardPage}" />

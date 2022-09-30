@@ -30,7 +30,6 @@ public partial class MainShell : Shell
 	{
 		base.OnAppearing();
 		disposables ??= new CompositeDisposable();
-		BtnAdd.Command = NavigateToAddPointCommand;
 
 		disposables.Add(NavigateToAddPointCommand.ThrownExceptions.Subscribe(logService.LogError, logService.LogError));
 	}

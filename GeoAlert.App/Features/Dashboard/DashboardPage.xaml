@@ -7,6 +7,9 @@
 					  x:Class="GeoAlert.App.Features.Dashboard.DashboardPage"
 					  Title="{Static dashboard:Text.Title}"
 					  Background="{StaticResource MainBackgroundBrush}">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem x:Name="ToolbarAdd" Text="{Static dashboard:Text.AddGeofence}" />
+	</ContentPage.ToolbarItems>
 
 	<Grid x:Name="GridMain"
 		  RowDefinitions="*,Auto">

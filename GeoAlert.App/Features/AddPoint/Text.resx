@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
   <data name="Adding" xml:space="preserve">
     <value>Añadiendo petipoint</value>
   </data>
@@ -132,6 +135,9 @@
   <data name="Alerts" xml:space="preserve">
     <value>Alertas:</value>
     <comment>With semicolon</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Descripción</value>
